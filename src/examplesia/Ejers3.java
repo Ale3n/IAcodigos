@@ -10,7 +10,7 @@ import java.util.LinkedList;
  *
  * @author Tower
  */
-public class Ejers3 {
+public class Ejers3 {//SUMANDOS Y MOCHILA CON LISTAS DE LISTAS.
 
     /**
      * @param args the command line arguments

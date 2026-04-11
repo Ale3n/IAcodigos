@@ -10,10 +10,10 @@ import java.util.LinkedList;
  *
  * @author Tower
  */
-public class Examplesia {
+public class Examplesia_1 {
 
      public static int c = 0;
-    public static void main(String[] args) {
+    public static void main(String[] args) {//EL PROBLEMA DE LOS SUMANDOS Y LA MOCHILA
             // TODO code application logic here
         LinkedList<Integer> L1 = new LinkedList<>();
         //Sumandos
@@ -21,30 +21,35 @@ public class Examplesia {
 //        sumandosDIF(L1,12,1);
 //        sumandosIGU(L1, 12, 1);
 //        sumandosPRI(L1, 12, 1);
-        //sumandosRAN(L1, 12, 2, 5);
+//        sumandosRAN(L1, 12, 2, 5);
         //Factores
-  //      factores(L1, 6, 2);
+        factores(L1, 6, 2);
 //        factoresDIF(L1, 81, 2);
 //        factoresIGU(L1, 81, 2);
 //        factoresPRI(L1, 81, 2);
 //        factoresRAN(L1, 81, 2, 28);
         //Mochila
-        LinkedList<Integer> L2 = new LinkedList<>();
+        /*LinkedList<Integer> L2 = new LinkedList<>();
         L1.add(1);
         L1.add(3);
         L1.add(5);
-        //mochila(L1, L2, 7, 0);
-      mochilaDIF(L1, L2, 7, 0);
+        L1.add(7);
+        L1.add(1);
+        L1.add(3);
+        L1.add(5);
+        L1.add(7);
+        mochila(L1, L2, 34, 0);
+//        mochilaDIF(L1, L2, 34, 0);
 //        mochilaRAN(L1, L2, 34, 0, 2, 5);
-        //mochilaEXT(L1, L2, 15, 0);
-        /*for (int i = 0; i < CombiEXT.size(); i++) {
+        mochilaEXT(L1, L2, 15, 0);
+        for (int i = 0; i < CombiEXT.size(); i++) {
             System.out.println(CombiEXT.get(i));
-        }*/
+        }
 //        mochilaMEJ(L1, L2, 34, 0);
 //        for (int i = 0; i < CombiMEJ.size(); i++) {
 //            System.out.println(CombiMEJ.get(i));
 //        }C
-        //System.out.println("Sol = "+ c);         
+        System.out.println("Sol = "+ c);   */       
     }
     
     //Sumandos
@@ -142,7 +147,7 @@ public class Examplesia {
             k++;
         }
     }
-    //Encontrar todos los sumandos entre a y b inclusive en una Lista.
+    
     public static void sumandosRAN(LinkedList<Integer> L1, int n, int a, int b){
         int sum = suma(L1);
         if (sum > n) {
@@ -170,7 +175,7 @@ public class Examplesia {
         return Total;
     }
     //Encontrar los factores posibles en una Lista
-     public static void factores(LinkedList<Integer> L1, int n, int i){
+    public static void factores(LinkedList<Integer> L1, int n, int i){
         int mul = mult(L1);
         if (mul > n) {
             return;
@@ -371,6 +376,5 @@ public class Examplesia {
             k++;
         }
     }
-    
     
 }
