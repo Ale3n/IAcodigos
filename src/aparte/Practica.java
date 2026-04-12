@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package examplesia;
+package aparte;
 
 import java.util.LinkedList;
 
@@ -10,27 +10,27 @@ import java.util.LinkedList;
  *
  * @author Tower
  */
-class Objeto{
-    int peso;
-    String color;
-    public Objeto(int peso, String color){
-        this.peso = peso;
-        this.color = color;
-    }
-    @Override
-    public String toString(){
-        return "(Peso: "+peso+", Color: "+color+")";
-    }
-}
-
-public class EjersArealizar {
+public class Practica {
 
     /**
      * @param args the command line arguments
      */
+    class Objeto{
+        int peso;
+        String color;
+        public Objeto(int peso, String color){
+            this.peso = peso;
+            this.color = color;
+        }
+        @Override
+        public String toString(){
+            return "(Peso: "+peso+", Color: "+color+")";
+        }
+    }
      public static int c = 0;
     public static void main(String[] args) {
         // TODO code application logic here
+         // TODO code application logic here
         // En una bodega hay cinco tipos diferentes de botellas.
         // ¿De cuántas formas se pueden elegir cuatro botellas?
          int r = 4;
@@ -63,7 +63,6 @@ public class EjersArealizar {
         permutSR(L5, L6, r, 0);
         System.out.println("Combinaciones totales = " + c); //720
         c = 0;
-        
     }
     
     public static int suma(LinkedList<Integer> L1){
@@ -191,7 +190,7 @@ public class EjersArealizar {
             k = k + 1;
         }
     }
-     public static int det(Matriz M){
+     public static int det(Matriz2 M){
         if (M.cantFil()==1) {/////////////////
             return M.elem(0,0);
         }
@@ -209,20 +208,20 @@ public class EjersArealizar {
             return -1;
         }
     }
-    public static Matriz menor(Matriz M, int i, int j){
-        Matriz M1 = new Matriz(M);
+    public static Matriz2 menor(Matriz2 M, int i, int j){
+        Matriz2 M1 = new Matriz2(M);
         M1.eliminarFil(i);
         M1.eliminarCol(j);
         return M1;
     }
-    public void mostrarMatricesPositivos(LinkedList<Matriz> l){
-        for(Matriz m : l){
+    public void mostrarMatricesPositivos(LinkedList<Matriz2> l){
+        for(Matriz2 m : l){
             if (sonPositivos(m)) {
                 m.mostrar();
             }
         }
     }
-    private boolean sonPositivos(Matriz m) {
+    private boolean sonPositivos(Matriz2 m) {
         for (int i = 0; i < m.cantFil(); i++) {
             for (int j = 0; j < m.cantCol(); j++) {
                 if (m.elem(i, j) <= 0) { // estrictamente positivos
@@ -232,9 +231,7 @@ public class EjersArealizar {
         }
         return true;
     }
+    
    
-
-    
-    
     
 }

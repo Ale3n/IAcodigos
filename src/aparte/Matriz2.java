@@ -59,6 +59,10 @@ public class Matriz2 {
     public int cantFil(){
         return cantFil;
     }
+     public int cantCol(){
+        return cantCol;
+    }
+    
     public void mostrar(){
         for (int i = 0; i < cantFil; i++) {
             for (int j = 0; j < cantCol; j++) {
