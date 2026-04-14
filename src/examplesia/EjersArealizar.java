@@ -10,10 +10,10 @@ import java.util.LinkedList;
  *
  * @author Tower
  */
-class Objeto{
+class Mochila{
     int peso;
     String color;
-    public Objeto(int peso, String color){
+    public Mochila(int peso, String color){
         this.peso = peso;
         this.color = color;
     }
@@ -33,7 +33,7 @@ public class EjersArealizar {
         // TODO code application logic here
         // En una bodega hay cinco tipos diferentes de botellas.
         // ¿De cuántas formas se pueden elegir cuatro botellas?
-         int r = 4;
+        /* int r = 4;
         LinkedList<String> L3 = new LinkedList<>();
         LinkedList<String> L4 = new LinkedList<>();
 
@@ -62,7 +62,21 @@ public class EjersArealizar {
 
         permutSR(L5, L6, r, 0);
         System.out.println("Combinaciones totales = " + c); //720
-        c = 0;
+        c = 0;*/
+        
+         LinkedList<Mochila> objetos = new LinkedList<>();
+
+        // Agregar objetos
+        objetos.add(new Mochila(2, "Rojo"));
+        objetos.add(new Mochila(3, "Azul"));
+        objetos.add(new Mochila(4, "Naranja"));
+        objetos.add(new Mochila(5, "rosa"));
+
+        LinkedList<Mochila> seleccion = new LinkedList<>();
+
+        int pesoMaximo = 7;
+
+        resolverMochila(objetos, seleccion, pesoMaximo, 0);
         
     }
     
@@ -81,15 +95,16 @@ public class EjersArealizar {
         }
         return Total;
     }
-    public static int suma2(LinkedList<Objeto> mochila){
+    public static int suma2(LinkedList<Mochila> m){
         int total = 0;
-        for (int i = 0; i < mochila.size(); i++){
-            total += mochila.get(i).peso;
+        for (int i = 0; i < m.size(); i++){
+            total += m.get(i).peso;
         }
         return total;
     }
+  
     
-    public static void sumandosDIF(LinkedList<Integer> L1,
+    /*public static void sumandosDIF(LinkedList<Integer> L1,
         LinkedList<LinkedList<Integer>> L2, int n, int i){
         int sum = suma(L1);
         if (sum > n) {
@@ -105,6 +120,25 @@ public class EjersArealizar {
                 L1.add(k);
                 sumandosDIF(L1, L2, n, k);
                 L1.removeLast();
+            }
+            k++;
+        }
+    }*/
+     public static void sumandosDIF(LinkedList<Integer> L1, int n, int i){
+        int sum = suma(L1);
+        if (sum > n) {
+            return;
+        }
+        if (sum == n) {
+            System.out.println(L1);
+            return;
+        }
+        int k = i;
+        while (k <= n){
+            if (!L1.contains(k)) {
+                L1.add(k);
+                sumandosDIF(L1, n, k);
+                L1.removeLast(); 
             }
             k++;
         }
@@ -138,20 +172,17 @@ public class EjersArealizar {
             mochila.removeLast();
         }
     }*/
-    public static void resolverMochila(LinkedList<Objeto> objetos, LinkedList<Objeto> mochila, int max, int i){
-        int pesoActual = suma2(mochila); // asumiendo que tienes un método suma para pesos
-
+    public static void resolverMochila(LinkedList<Mochila> objetos, LinkedList<Mochila> m, int max, int i){
+        int pesoActual = suma2(m); // asumiendo que tienes un método suma para pesos
         if (pesoActual > max) {
             return;
         }
-
-        System.out.println(mochila);
-
+        System.out.println(m);
         int k = i;
         while (k < objetos.size()){
-            mochila.add(objetos.get(k));
-            resolverMochila(objetos, mochila, max, k + 1);
-            mochila.removeLast();
+            m.add(objetos.get(k));
+            resolverMochila(objetos, m, max, k + 1);
+            m.removeLast();
             k++;
         }
     }
@@ -163,7 +194,7 @@ public class EjersArealizar {
     public static void combiCR(LinkedList<String> L1, LinkedList<String> L2, int r, int i) {
         if (L2.size() == r) {
             System.out.println(L2);
-            c++;
+            //c++;
             return;
         }
         int k = i;
@@ -215,14 +246,15 @@ public class EjersArealizar {
         M1.eliminarCol(j);
         return M1;
     }
-    public void mostrarMatricesPositivos(LinkedList<Matriz> l){
+    
+    public static void mostrarMatricesPositivos(LinkedList<Matriz> l){
         for(Matriz m : l){
             if (sonPositivos(m)) {
                 m.mostrar();
             }
         }
     }
-    private boolean sonPositivos(Matriz m) {
+    public static boolean sonPositivos(Matriz m) {
         for (int i = 0; i < m.cantFil(); i++) {
             for (int j = 0; j < m.cantCol(); j++) {
                 if (m.elem(i, j) <= 0) { // estrictamente positivos

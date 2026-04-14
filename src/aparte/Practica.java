@@ -6,232 +6,129 @@ package aparte;
 
 import java.util.LinkedList;
 
+
+
 /**
  *
  * @author Tower
  */
+
 public class Practica {
 
     /**
      * @param args the command line arguments
      */
-    class Objeto{
-        int peso;
-        String color;
-        public Objeto(int peso, String color){
-            this.peso = peso;
-            this.color = color;
-        }
-        @Override
-        public String toString(){
-            return "(Peso: "+peso+", Color: "+color+")";
-        }
-    }
-     public static int c = 0;
+   
     public static void main(String[] args) {
-        // TODO code application logic here
-         // TODO code application logic here
-        // En una bodega hay cinco tipos diferentes de botellas.
-        // ¿De cuántas formas se pueden elegir cuatro botellas?
-         int r = 4;
-        LinkedList<String> L3 = new LinkedList<>();
-        LinkedList<String> L4 = new LinkedList<>();
-
-        L3.add("Coca cola");
-        L3.add("Pepsi");
-        L3.add("Simba");
-        L3.add("Oro");
-        L3.add("Guarana");
-
-        combiCR(L3, L4, r, 0);
-        System.out.println("Combinaciones totales = " + c); //70
-        c = 0;
-
-        // ¿Cuántas permutaciones sin repetidos se pueden formar con los digitos 1 al 6?
-
-        r = 6;
-        LinkedList<Integer> L5 = new LinkedList<>();
-        LinkedList<Integer> L6 = new LinkedList<>();
-
-        L5.add(1);
-        L5.add(2);
-        L5.add(3);
-        L5.add(4);
-        L5.add(5);
-        L5.add(6);
-
-        permutSR(L5, L6, r, 0);
-        System.out.println("Combinaciones totales = " + c); //720
-        c = 0;
+        
     }
-    
-    public static int suma(LinkedList<Integer> L1){
-        int Total = 0;
-        for (int i = 0; i < L1.size(); i++) {
-            Total += L1.get(i);
-        }
-        return Total;
-    }
-
-    public static int mult(LinkedList<Integer> L1){
-        int Total = 1;
-        for (int i = 0; i < L1.size(); i++) {
-            Total *= L1.get(i);
-        }
-        return Total;
-    }
-    public static int suma2(LinkedList<Objeto> mochila){
+    public static int suma(LinkedList<Integer> l1){
         int total = 0;
-        for (int i = 0; i < mochila.size(); i++){
-            total += mochila.get(i).peso;
+        for (int i = 0; i < l1.size(); i++) {
+            total += l1.get(i);
+        }
+        return total;
+    }
+    public static int suma2(LinkedList<mochila> l1){
+        int total = 0;
+        for (int i = 0; i < l1.size(); i++) {
+            total += l1.get(i).peso;
         }
         return total;
     }
     
-    public static void sumandosDIF(LinkedList<Integer> L1,
-        LinkedList<LinkedList<Integer>> L2, int n, int i){
-        int sum = suma(L1);
-        if (sum > n) {
+    public static int mult(LinkedList<Integer> l1){
+        int total = 0;
+        for (int i = 0; i < l1.size(); i++) {
+            total *= l1.get(i);
+        }
+        return total;
+    }
+    
+    
+    public static void sumandosDif(LinkedList<Integer> l1,int n,int i){
+        int sum = suma(l1);
+        if (sum>n) {
             return;
         }
         if (sum == n) {
-            L2.add(new LinkedList<>(L1));
-            return;
+            System.out.println(l1);
         }
         int k = i;
-        while (k <= n){
-            if (!L1.contains(k)) {
-                L1.add(k);
-                sumandosDIF(L1, L2, n, k);
-                L1.removeLast();
+        while (k<=n) {
+            if (!l1.contains(k)) {
+                l1.add(k);
+                sumandosDif(l1,n,k);
+                l1.removeLast();
             }
             k++;
         }
     }
-    public static void factoresRAN(LinkedList<Integer> L1, int n, int a, int b){
-        int mul = mult(L1);
-        if (mul > n) {
+    public static void factoresRan(LinkedList<Integer> l1,int n,int a,int b){
+        int sum = mult(l1);
+        if (sum>n) {
             return;
         }
-        if (mul == n) {
-            System.out.println(L1);
-            return;
+        if (sum == n) {
+            System.out.println(l1);
         }
         int k = a;
-        while (k <= b){
-            L1.add(k);
-            factoresRAN(L1, n, k, b);
-            L1.removeLast();
+        while (k<=b) {
+
+                l1.add(k);
+                sumandosDif(l1,k,b);
+                l1.removeLast();
+            
             k++;
         }
     }
-    //Consulta 1: mocila con restricion de peso
-    /*public static void resolverMochila(LinkedList<Objeto> objetos, LinkedList<Objeto> mochila, int i, int pesoActual, int max){
-        if(pesoActual > max){
+    public static void resolMochila(LinkedList<mochila> o,LinkedList<mochila> m,int max, int i){
+        int sum = suma2(m);
+        if (sum>max) {
             return;
         }
-        System.out.println(mochila);
-        for(int j = i; j < objetos.size(); j++){
-            mochila.add(objetos.get(j));
-            resolverMochila(objetos, mochila, j+1, pesoActual + objetos.get(j).peso, max);
-            mochila.removeLast();
-        }
-    }*/
-    public static void resolverMochila(LinkedList<Objeto> objetos, LinkedList<Objeto> mochila, int max, int i){
-        int pesoActual = suma2(mochila); // asumiendo que tienes un método suma para pesos
-
-        if (pesoActual > max) {
-            return;
-        }
-
-        System.out.println(mochila);
-
+        System.out.println(m);
         int k = i;
-        while (k < objetos.size()){
-            mochila.add(objetos.get(k));
-            resolverMochila(objetos, mochila, max, k + 1);
-            mochila.removeLast();
+        while (k<o.size()) {
+
+                m.add(o.get(k));
+                resolMochila(o,m,max,k+1);
+                m.removeLast();
+            
             k++;
         }
     }
-    
-    
-    // Combinaciones con repetición
-    // En una bodega hay cinco tipos diferentes de botellas.
-        // ¿De cuántas formas se pueden elegir cuatro botellas?
-    public static void combiCR(LinkedList<String> L1, LinkedList<String> L2, int r, int i) {
-        if (L2.size() == r) {
-            System.out.println(L2);
-            c++;
+    public static void combiCR(LinkedList<String> l1,LinkedList<String> l2,int r, int i){
+        if (l2.size()==r) {
+            System.out.println(l2);
             return;
         }
         int k = i;
-        while (k < L1.size()) {
-            L2.add(L1.get(k));
-            combiCR(L1, L2, r, k);
-            L2.removeLast();
-            k = k + 1;
+        while (k<l1.size()) {
+
+                l2.add(l1.get(k));
+                combiCR(l1,l2,r,k);
+                l2.removeLast();
+            
+            k++;
         }
     }
-    // Permutaciones sin repetición // ¿Cuántas permutaciones sin repetidos se pueden formar con los digitos 1 al 6?
-    public static void permutSR(LinkedList<Integer> L1, LinkedList<Integer> L2, int r, int i) {
-        if (L2.size() == r) {
-            System.out.println(L2);
-            c++;
+    public static void permutSR(LinkedList<Integer> l1,LinkedList<Integer> l2,int r, int i){
+        if (l2.size()==r) {
+            System.out.println(l2);
             return;
         }
         int k = 0;
-        while (k < L1.size()) {
-            if (!L2.contains(L1.get(k))) {
-                L2.add(L1.get(k));
-                permutSR(L1, L2, r, k + 1);
-                L2.removeLast();
+        while (k<l1.size()) {
+            if(!l2.contains(l1.get(k))){
+                l2.add(l1.get(k));
+                permutSR(l1,l2,r,k+1);
+                l2.removeLast();
             }
-            k = k + 1;
+            k++;
         }
-    }
-     public static int det(Matriz2 M){
-        if (M.cantFil()==1) {/////////////////
-            return M.elem(0,0);
-        }
-        int sum = 0, i = 0, j = 0;
-        while (i < M.cantFil()) {
-            sum = sum + signo(i,j) * M.elem(i,j) * det(menor(M,i,j));
-            i++;
-        }
-        return sum;
-    }
-    public static int signo(int i, int j){
-        if ((i + j) % 2 == 0) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-    public static Matriz2 menor(Matriz2 M, int i, int j){
-        Matriz2 M1 = new Matriz2(M);
-        M1.eliminarFil(i);
-        M1.eliminarCol(j);
-        return M1;
-    }
-    public void mostrarMatricesPositivos(LinkedList<Matriz2> l){
-        for(Matriz2 m : l){
-            if (sonPositivos(m)) {
-                m.mostrar();
-            }
-        }
-    }
-    private boolean sonPositivos(Matriz2 m) {
-        for (int i = 0; i < m.cantFil(); i++) {
-            for (int j = 0; j < m.cantCol(); j++) {
-                if (m.elem(i, j) <= 0) { // estrictamente positivos
-                    return false;
-                }
-            }
-        }
-        return true;
     }
     
-   
+    
     
 }
