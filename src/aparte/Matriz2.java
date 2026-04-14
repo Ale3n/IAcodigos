@@ -15,15 +15,15 @@ public class Matriz2 {
     private int cantFil;
     private int cantCol;
 
-    public Matriz2(int[][] elem, int maxFil, int maxCol, int cantFil, int cantCol) {
-        this.elem = new int[maxFil][maxCol];
+    public Matriz2(int maxFil, int maxCol, int cantFil, int cantCol) {
+        elem = new int[maxFil][maxCol];
         this.maxFil = maxFil;
         this.maxCol = maxCol;
         this.cantFil = cantFil;
         this.cantCol = cantCol;
     }
     public Matriz2(Matriz2 m){
-         this.elem = new int[m.maxFil][m.maxCol];
+        elem = new int[m.maxFil][m.maxCol];
         this.maxFil = m.maxFil;
         this.maxCol = m.maxCol;
         this.cantFil = m.cantFil;
@@ -32,24 +32,25 @@ public class Matriz2 {
             for (int j = 0; j < m.cantCol; j++) {
                 this.elem[i][j] = m.elem[i][j];
             }
-        }  
+        }
     }
     
     public void eliminarFil(int k){
-         for (int i = k+1; i < cantFil; i++) {
+        for (int i = k+1; i < cantFil; i++) {
             for (int j = 0; j < cantCol; j++) {
                 this.elem[i-1][j] = elem[i][j];
             }
-        }  
+        }
     }
     public void eliminarCol(int k){
-         for (int i = 0; i < cantFil; i++) {
+        for (int i = 0; i < cantFil; i++) {
             for (int j = k+1; j < cantCol; j++) {
                 this.elem[i][j-1] = elem[i][j];
             }
-        }  
+        }
     }
-    public int elem(int i, int j){
+    
+    public int elem(int i,int j){
         return elem[i][j];
     }
     public int cantFil(){
@@ -62,16 +63,12 @@ public class Matriz2 {
     public void mostrar(){
         for (int i = 0; i < cantFil; i++) {
             for (int j = 0; j < cantCol; j++) {
-                System.out.print(elem[i][j]+"\t");
+                System.out.print(elem[i][j] + "\t");  
             }
             System.out.println();
         }
         System.out.println();
     }
-    
-    
-    
-    
     
     
   
