@@ -94,7 +94,7 @@ public class Matriz {
            System.out.println("Fuera de rango");
         }
     }
-    @Override
+    /*@Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
@@ -107,6 +107,20 @@ public class Matriz {
         sb.append("------------");
 
         return sb.toString();
+    }*/
+    @Override
+    public String toString() {
+        String resultado = "";
+
+        for (int i = 0; i < cantFil; i++) {
+            for (int j = 0; j < cantCol; j++) {
+                resultado += elem[i][j] + "\t";
+            }
+            resultado += "\n";
+        }
+        resultado += "------------";
+
+        return resultado;
     }
     public void generarRandom(int a, int b){
         Random r = new Random();
