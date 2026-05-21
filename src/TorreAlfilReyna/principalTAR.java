@@ -32,8 +32,8 @@ public class principalTAR {
     private static int minPaso = 0;
     
     public static void main(String[] args) {
-        int a = 3;
-        int b = 3;
+        int a = 2;
+        int b = 2;
         int [][] m = new int [a][b];
         laberintoGenerico(m,0,0,a-1,b-1,1);
     }
@@ -75,6 +75,7 @@ public class principalTAR {
         laberintosimple1(m,i-1,j-1,iFin,jFin,paso+1);
         laberintosimple1(m,i-1,j,iFin,jFin,paso+1);
         laberintosimple1(m,i-1,j+1,iFin,jFin,paso+1);
+        
         laberintosimple1(m,i,j+1,iFin,jFin,paso+1);
         laberintosimple1(m,i+1,j+1,iFin,jFin,paso+1);
         laberintosimple1(m,i+1,j,iFin,jFin,paso+1);
@@ -334,7 +335,7 @@ public class principalTAR {
         if (i==iFin && j==jFin){  
             mostrar(m);
         }
-        LinkedList<Regla> l1 = reglasAplicablesSaltoCaballo(m, i, j);
+        LinkedList<Regla> l1 = reglasAplicablesDama(m, i, j);
         while (!l1.isEmpty()){
             Regla R = l1.removeFirst();
             laberintoGenerico(m, R.fil, R.col, iFin, jFin, paso+1);
