@@ -27,10 +27,7 @@ public class principalTAR {
         
     }
     
-    private static int cantSol = 0;
-    private static int maxPaso = 0;
-    private static int minPaso = 0;
-    
+   
     public static void main(String[] args) {
         int a = 2;
         int b = 2;

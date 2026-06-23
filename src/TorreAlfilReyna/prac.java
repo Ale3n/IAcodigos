@@ -18,19 +18,19 @@ public class prac {
     public static class Regla{
         int fil;
         int col;
-        
-        public Regla(int i,int j){
+        public Regla(int i, int j){
             this.fil = i;
             this.col = j;
         }
     }
     public static void main(String[] args) {
         int a = 2,b = 2;
-        int [][] m = new int[a][b];
-        laberitonGenerico(m,0,0,a-1,b-1,1);
+        int[][]m = new int[a][b];
+        laberintoGenrico(m,0,0,a-1,b-1,1);
     }
-    public static boolean posvalida(int[][]m, int i,int j){
-        return(i>=0 && i<m.length && j>=0 && j<m[i].length && m[i][j] == 0);
+    
+    public static boolean posvalida(int[][]m,int i,int j){
+        return(i>=0 && i <m.length && j>=0 && j<m[i].length && m[i][j] == 0);
     }
     public static void mostrar(int[][]m){
         for (int i = 0; i < m.length; i++) {
@@ -41,12 +41,12 @@ public class prac {
         }
         System.out.println();
     }
-    public static void rey1(int[][]m, int i,int j,int ifin,int jfin,int paso){
+    
+    public static void rey1(int[][]m,int i,int j,int ifin,int jfin,int paso){
         if (!posvalida(m,i,j)) {
             return;
         }
         m[i][j] = paso;
-        
         if (i == ifin && j == jfin) {
             mostrar(m);
         }
@@ -61,26 +61,23 @@ public class prac {
         rey1(m,i+1,j-1,ifin,jfin,paso+1);
         m[i][j] = 0;
     }
-    
-    public static void laberitonGenerico(int[][]m, int i,int j,int ifin,int jfin,int paso){
+    public static void laberintoGenrico(int[][]m,int i,int j,int ifin,int jfin,int paso){
         if (!posvalida(m,i,j)) {
             return;
         }
         m[i][j] = paso;
-        
         if (i == ifin && j == jfin) {
             mostrar(m);
         }
-        LinkedList<Regla>l1 = dama(m,i,j);
+        LinkedList<Regla>l1=rey2(m,i,j);
         while (!l1.isEmpty()) {
             Regla r = l1.removeFirst();
-            laberitonGenerico(m,r.fil,r.col,ifin,jfin,paso+1);
+            laberintoGenrico(m,r.fil,r.col,ifin,jfin,paso+1);
             m[r.fil][r.col] = 0;
         }
     }
-    
-    public static LinkedList<Regla> rey2(int[][]m, int f,int c){
-        LinkedList<Regla>l1 = new LinkedList<>();
+    public static LinkedList<Regla> rey2(int[][]m,int f,int c){
+        LinkedList<Regla>l1= new LinkedList<>();
         int k = f;
         int l = c-1;
         if (posvalida(m,k,l)) {
@@ -101,6 +98,7 @@ public class prac {
         if (posvalida(m,k,l)) {
             l1.add(new Regla(k,l));
         }
+        
         k = f;
          l = c+1;
         if (posvalida(m,k,l)) {
@@ -122,166 +120,12 @@ public class prac {
             l1.add(new Regla(k,l));
         }
         return l1;
-    }
-    public static LinkedList<Regla> caballo(int[][]m, int f,int c){
-        LinkedList<Regla>l1 = new LinkedList<>();
-        int k = f-1;
-        int l = c-2;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-         k = f+1;
-         l = c-2;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-        k = f-2;
-         l = c-1;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-        k = f-2;
-         l = c+1;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-        k = f-1;
-         l = c+2;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-        k = f+1;
-         l = c+2;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-        k = f+2;
-         l = c+1;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-        k = f+2;
-         l = c-1;
-        if (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-        }
-        return l1;
-    }
-    public static LinkedList<Regla> catillo(int[][]m, int f,int c){
-        LinkedList<Regla>l1 = new LinkedList<>();
-        int k = f;
-        int l = c-1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l--;
-        }
-         k = f-1;
-         l = c;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k--;
-        }
-        k = f;
-         l = c+1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l++;
-        }
-        k = f+1;
-         l = c;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k++;
-        }
         
-        return l1;
-    }
-    public static LinkedList<Regla> alfil(int[][]m, int f,int c){
-        LinkedList<Regla>l1 = new LinkedList<>();
-        int k = f-1;
-        int l = c-1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l--;k--;
-        }
-         k = f-1;
-         l = c+1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k--;l++;
-        }
-        k = f+1;
-         l = c+1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l++;k++;
-        }
-        k = f+1;
-         l = c-1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k++;
-            l--;
-        }
         
-        return l1;
     }
     
-    public static LinkedList<Regla> dama(int[][]m, int f,int c){
-        LinkedList<Regla>l1 = new LinkedList<>();
-        int k = f;
-        int l = c-1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l--;
-        }
-         k = f-1;
-         l = c;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k--;
-        }
-        k = f;
-         l = c+1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l++;
-        }
-        k = f+1;
-         l = c;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k++;
-        }
-         k = f-1;
-         l = c-1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l--;k--;
-        }
-         k = f-1;
-         l = c+1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k--;l++;
-        }
-        k = f+1;
-         l = c+1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            l++;k++;
-        }
-        k = f+1;
-         l = c-1;
-        while (posvalida(m,k,l)) {
-            l1.add(new Regla(k,l));
-            k++;
-            l--;
-        }
-        
-        return l1;
-        
-    }
+    
+    
     
     
    
