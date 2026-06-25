@@ -74,8 +74,8 @@ public class princi {
         int a = 5, b = 5;
         int m[][] = new int[a][b];
         
-        m[0][3] = -1;
-        if (laberinto(m,0,0,4,4,1)) {
+        //m[0][3] = -1;
+        if (labCaballoSH(m,0,0,4,4,1)) {
             mostrar(m);
             System.out.println("la cantidad de pasos es  " + cantPaso);
             System.out.println("la cantidad hacia atras  "+ cantPasoAtras);
@@ -99,30 +99,24 @@ public class princi {
         }
         return l1.remove(k);
     }
+    public static double distancia(double x1, double y1, double x2, double y2){
+        return Math.sqrt(Math.pow(x1-x2, 2)+Math.pow(y1-y2, 2));
+    }
     public static Regla elegirMejorReglaCaballo(LinkedList<Regla> l, int[][] m){
         int mejor = 0;
         int menor = Integer.MAX_VALUE;
-
         for(int i = 0; i < l.size(); i++){
             Regla r = l.get(i);
-
             int cant = cantidadMovimientos(m, r.fil, r.col);
-
             if(cant < menor){
                 menor = cant;
                 mejor = i;
             }
         }
-
         return l.remove(mejor);
     }
     public static int cantidadMovimientos(int[][] m, int i, int j){
         return reglasAplicablesSaltoCaballo(m, i, j).size();
-    }
-    
-    
-    public static double distancia(double x1, double y1, double x2, double y2){
-        return Math.sqrt(Math.pow(x1-x2, 2)+Math.pow(y1-y2, 2));
     }
     
     
@@ -134,8 +128,8 @@ public class princi {
         }
         LinkedList<Regla>l1 = reglasAplicablesLa(m,i,j);
         while (!l1.isEmpty()) {
-            //Regla r = elegirMejorRegla(l1,ifin,jfin);
-            Regla r = l1.removeFirst();
+            Regla r = elegirMejorRegla(l1,ifin,jfin);
+            //Regla r = l1.removeFirst();
             if (laberinto(m,r.fil,r.col,ifin,jfin,paso+1)) {
                 return true;
             }
@@ -146,25 +140,23 @@ public class princi {
     }
     
 
-    public static boolean labCaballoSH(int m[][], int i, int j, int ifin, int jfin, int paso) {
+    public static boolean labCaballoSH(int m[][], int i, int j, int ifin, 
+            int jfin, int paso) {
         m[i][j] = paso;
         cantPaso++;
         if (i == ifin && j == jfin && paso == (m.length * m[0].length)) {
             return true;
         }
-
         LinkedList<Regla> l = reglasAplicablesSaltoCaballo(m, i, j);
-
         while (!l.isEmpty()) {
-            Regla r = l.removeFirst();
-            //Regla r = elegirMejorReglaCaballo(l, m);
+            //Regla r = l.removeFirst();
+            Regla r = elegirMejorReglaCaballo(l, m);
             if (labCaballoSH(m, r.fil, r.col, ifin, jfin, paso + 1)) {
                 return true;
             }
             cantPasoAtras++;
             m[r.fil][r.col] = 0;
         }
-
         return false;
     }
     
