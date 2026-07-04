@@ -30,7 +30,7 @@ public class Pract_N_Reinas {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        int n = 6;
+        int n = 4;
         int[][] tablero = new int[n][n];
         
         System.out.println("Dimensión del tablero : " + n);
@@ -158,8 +158,8 @@ public class Pract_N_Reinas {
         LinkedList<Regla> reglasPosibles = reglasAplicables(m, paso-1);
         while (! reglasPosibles.isEmpty()){
           //Regla R=elegirPrimerRegla(reglasPosibles);//Sin heurística
-         //Regla R=elegirReglaDeMedios(reglasPosibles);//Con heurística
-            Regla R = reglasPosibles.removeFirst();
+         Regla R=elegirReglaDeMedios(reglasPosibles);//Con heurística
+            //Regla R = reglasPosibles.removeFirst();
             m[R.fil][R.col] = paso;
             if (nReinas(m, paso+1))
                 return true;

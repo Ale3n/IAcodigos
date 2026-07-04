@@ -16,14 +16,12 @@ public class ProblenNreinas {
      * @param args the command line arguments
      */
     
-    public static class Regla
-    {
-        public int fil,col;
+    public static class Regla{
+        int fil,col;
         public Regla(int i,int j){
             this.fil = i;
             this.col = j;
         }
-        
     }
     public static int cantpaso = 0;
     public static int cantBack = 0;
