@@ -30,11 +30,12 @@ public class Pract_N_Reinas {
     
     public static void main(String[] args) {
         // TODO code application logic here
-        int n = 4;
+        int n = 10;
         int[][] tablero = new int[n][n];
         
         System.out.println("Dimensión del tablero : " + n);
-        
+        //tablero[0][2] = 4;
+        //tablero[1][3] = 6;
         if (nReinas(tablero, 1)){
             System.out.println("El tablero tiene solución");
             System.out.println("Cantidad de pasos : " + cantPaso);

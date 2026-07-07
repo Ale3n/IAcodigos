@@ -22,10 +22,10 @@ public class sudoku {
         // TODO code application logic here
         int m[][] = new int[9][9];
         
-        m[0][1] = 1;
-        m[1][3] = 3;
+        //m[0][1] = 1;
+        //m[1][3] = 3;
         
-        mostrar(m);
+        //mostrar(m);
         if (sudoku(m,0,0)) {
             System.out.println("tiene solucion");
             mostrar(m);
@@ -55,7 +55,8 @@ public class sudoku {
         LinkedList<Integer> L1 = reglasAplicables(m, i, j);
         while(!L1.isEmpty()){
             //m[i][j] = L1.removeFirst();
-            m[i][j] = mejorR(L1);
+            m[i][j] = L1.removeLast();
+            //m[i][j] = mejorR(L1);
             if(sudoku(m, i, j + 1)) return true;
             m[i][j] = 0;
             back++;
